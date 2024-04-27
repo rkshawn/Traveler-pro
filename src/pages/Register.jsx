@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { IoEyeOffOutline, IoEyeSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { TravelContext } from "../Provider/TravelProvider";
 
 const Register = () => {
+    const {createUser} = useContext(TravelContext)
     const [showPassword, setShowPassword] = useState(false);
     const [registerError, setRegisterError] = useState("");
 
@@ -23,6 +25,13 @@ const Register = () => {
             setRegisterError("password should contain at-least an Uppercase");
             return;
           }
+          createUser(email,password)
+          .then(result=>{
+            console.log(result.user)
+          })
+          .catch(error=>{
+            console.log(error)
+          })
     }
 
     

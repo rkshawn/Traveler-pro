@@ -1,7 +1,15 @@
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { TravelContext } from "../Provider/TravelProvider";
 
 const NavBar = () => {
-
+    const {user,LogOutUser} = useContext(TravelContext)
+    console.log(user)
+   const handleLogOut = ()=>{
+    LogOutUser()
+    .then(result=>console.log(result.user))
+    .catch(error=>console.log(error))
+   }
     const navLinks = <>
       <li>
          <NavLink to='/'> Home </NavLink>
@@ -15,6 +23,13 @@ const NavBar = () => {
       <li>
          <NavLink to='/mylist'> My List </NavLink>
       </li>
+      {
+         user?
+         '':
+         <li>
+          <NavLink to='/register'>Register</NavLink>
+         </li>
+       }
      
     
     </>
@@ -37,7 +52,29 @@ const NavBar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Log In</a>
+        {
+        user?
+        <>
+         <div
+          tabIndex={0}
+          role="button"
+          className="btn btn-ghost btn-circle avatar"
+        >
+          <div className="w-10 rounded-full">
+            <img
+              alt="Tailwind CSS Navbar component"
+              src={user?.photoURL || "https://i.ibb.co/zZChys7/empty-Profile.png" }
+            />
+          </div>
+        </div>
+        <Link onClick={handleLogOut}>
+          <button className="btn bg-[#403F3F] text-white">Log Out</button>
+        </Link>
+        </> :
+         <Link to='/login'>
+         <button className="btn bg-[#403F3F] text-white">Log In</button>
+       </Link>
+       }
         </div>
       </div>
     );
