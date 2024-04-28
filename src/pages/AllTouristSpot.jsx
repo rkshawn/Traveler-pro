@@ -1,27 +1,47 @@
+import { useLoaderData } from "react-router-dom";
+
 const AllTouristSpot = () => {
+  const travelsData = useLoaderData();
+  
+
   return (
-    <div className="hero min-h-screen bg-base-200">
-      <div className="hero-content flex-col lg:flex-row">
-        <div className="flex-1">
-          <img
-            src="https://i.ibb.co/nLFKmWB/jonas-kool-EJGVd-CGHof8-unsplash.jpg
-          "
-            className="max-w-[500px] rounded-lg shadow-2xl"
-          />
-        </div>
-        <div className="flex-1 space-y-5">
-          <h1 className="text-5xl font-bold">Paris saint german</h1>
-          <p className="text-2xl font-bold text-slate-400">Average Cost : 200$</p>
-          <p className="text-2xl font-bold text-slate-400">Total visitors per year : 20000</p>
-
-          <p className="text-2xl font-bold text-slate-400">Travel Time : 7 days</p>
-
-          <p className="text-2xl font-bold text-slate-400">Seasonality : Summer</p>
-
-          <button className="btn btn-primary">View details</button>
-        </div>
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-10 border">
+         {
+            travelsData.map(travelData=> <div key={travelData._id} className="hero p-10 min-h-screen bg-base-200">
+            <div className=" flex-col lg:flex-row">
+              <div className="flex-1">
+                <img
+                  src={travelData.photoURL}
+                  className="w-[500px] h-[400px] rounded-lg shadow-2xl"
+                />
+              </div>
+              <div className="flex-1 space-y-5">
+                <h1 className="text-3xl font-bold">
+                 Spot Name : {travelData.spotName}
+                </h1>
+                <p className="text-2xl font-bold text-slate-400">
+                  Average Cost : {travelData.averageCost}
+                </p>
+                <p className="text-2xl font-bold text-slate-400">
+                  Total visitors per year :{travelData.totalVisitorPerYear}
+                </p>
+  
+                <p className="text-2xl font-bold text-slate-400">
+                  Travel Time :{travelData.travelDuration}
+                </p>
+  
+                <p className="text-2xl font-bold text-slate-400">
+                  Seasonality :{travelData.season}
+                </p>
+  
+                <button className="btn btn-primary w-full">View details</button>
+              </div>
+            </div>
+          </div>)
+         }
       </div>
-    </div>
+    </>
   );
 };
 

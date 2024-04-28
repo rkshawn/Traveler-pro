@@ -1,4 +1,5 @@
 import Banner from "../layouts/Banner";
+import TouristsSpot from "../layouts/TouristsSpot";
 
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
         <div>
            
             <Banner></Banner>
+            <TouristsSpot></TouristsSpot>
             
         </div>
     );
