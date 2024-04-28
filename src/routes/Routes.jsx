@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
             element: <AllTouristSpot></AllTouristSpot>
         },
         {
-            path: '/AddTourists',
+            path: '/addTourists',
             element: <AddTouristsSpot></AddTouristsSpot>
         },
         {
