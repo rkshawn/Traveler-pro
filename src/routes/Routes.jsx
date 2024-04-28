@@ -7,6 +7,7 @@ import MyList from "../pages/MyList";
 import LogIn from "../pages/LogIn";
 import Register from "../pages/Register";
 import TravelDetails from "../pages/TravelDetails";
+import TouristsSpot from "../layouts/TouristsSpot";
 
 export const router = createBrowserRouter([
     {
@@ -42,6 +43,11 @@ export const router = createBrowserRouter([
             path: '/travelDetails/:id',
             element: <TravelDetails></TravelDetails>,
             loader: ({params})=>fetch(`http://localhost:5000/traveldata/${params.id}`)
+        },
+        {
+            path: '/',
+            element: <TouristsSpot></TouristsSpot>,
+            loader: ()=>fetch('http://localhost:5000/traveldata')
         }
       ]
     },

@@ -6,7 +6,7 @@ const AllTouristSpot = () => {
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-10 border">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-10 ">
          {
             travelsData.map(travelData=> <div key={travelData._id} className="hero p-10 min-h-screen bg-base-200">
             <div className=" flex-col lg:flex-row">
