@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const AllTouristSpot = () => {
   const travelsData = useLoaderData();
@@ -35,7 +35,9 @@ const AllTouristSpot = () => {
                   Seasonality :{travelData.season}
                 </p>
   
-                <button className="btn btn-primary w-full">View details</button>
+               <Link to={`/travelDetails/${travelData._id}`}>
+                   <button className="btn btn-primary w-full">View details</button>
+               </Link>
               </div>
             </div>
           </div>)
