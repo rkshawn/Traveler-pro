@@ -1,9 +1,13 @@
 import { useContext } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { TravelContext } from "../Provider/TravelProvider";
+import Swal from 'sweetalert2'
 
 const LogIn = () => { 
+  const location = useLocation()
+  const navigate = useNavigate()
+  const from = location?.state || '/';
     const {signInUser,logInWithGoogle,logInWithGithub} = useContext(TravelContext);
     const handleLogIn=e =>{
         e.preventDefault();
@@ -15,6 +19,16 @@ const LogIn = () => {
         signInUser(email,password)
         .then(result=>{
             console.log(result.user)
+            if(result.user){
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Successfully Logged in",
+                showConfirmButton: false,
+                timer: 2000
+              });
+              navigate(from)
+            }
         })
         .catch(error=>{
             console.log(error)

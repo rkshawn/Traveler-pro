@@ -8,6 +8,7 @@ import LogIn from "../pages/LogIn";
 import Register from "../pages/Register";
 import TravelDetails from "../pages/TravelDetails";
 import ErrorPage from "../pages/ErrorPage";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -26,11 +27,11 @@ export const router = createBrowserRouter([
         },
         {
             path: '/addTourists',
-            element: <AddTouristsSpot></AddTouristsSpot>
+            element: <PrivateRoute><AddTouristsSpot></AddTouristsSpot></PrivateRoute>
         },
         {
             path: '/mylist',
-            element:<MyList></MyList>
+            element:<PrivateRoute><MyList></MyList></PrivateRoute>
         },
         {
             path: '/login',
@@ -42,7 +43,7 @@ export const router = createBrowserRouter([
         },
         {
             path: '/travelDetails/:id',
-            element: <TravelDetails></TravelDetails>,
+            element: <PrivateRoute><TravelDetails></TravelDetails></PrivateRoute>,
             loader: ({params})=>fetch(`https://assignment-10-server-woad-theta.vercel.app/traveldata/${params.id}`)
         },
        

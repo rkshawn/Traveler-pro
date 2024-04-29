@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { TravelContext } from "../Provider/TravelProvider";
+import Swal from "sweetalert2";
 
 const MyList = () => {
     const [loadedData,setLoadedData] = useState([]);
@@ -18,7 +19,35 @@ useEffect(()=>{
 const authorizedData = loadedData.filter(data =>data.email === user.email)
   console.log(authorizedData)
 
-
+  const handleDelete = id=>{
+    
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(`https://assignment-10-server-woad-theta.vercel.app/traveldata/${id}`,{
+                method: 'DELETE'
+               })
+               .then(res=>res.json())
+               .then(data=>{
+                if(data.deletedCount>0){
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your travel data has been deleted.",
+                        icon: "success"
+                      });
+                }
+               })
+         
+        }
+      });
+  }
 
   return (
     <div>
@@ -43,10 +72,10 @@ const authorizedData = loadedData.filter(data =>data.email === user.email)
                 <td> {data.countryName}  </td>
                 <td>{data.location}</td>
                <td>
-               <button className="btn">Update</button>
+               <button className="btn bg-green-500">Update</button>
                </td>
                <td>
-               <button className="btn bg-red-600 text-white">X</button>
+               <button onClick={()=>handleDelete(data._id)} className="btn bg-red-600 text-white">X</button>
                </td>
               </tr>)
            }
