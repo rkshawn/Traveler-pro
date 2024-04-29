@@ -1,9 +1,13 @@
 import { useContext, useState } from "react";
 import { IoEyeOffOutline, IoEyeSharp } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { TravelContext } from "../Provider/TravelProvider";
+import Swal from 'sweetalert2'
 
 const Register = () => {
+    const location = useLocation()
+    const navigate = useNavigate()
+    const from = location?.state || '/';
     const {createUser} = useContext(TravelContext)
     const [showPassword, setShowPassword] = useState(false);
     const [registerError, setRegisterError] = useState("");
@@ -28,6 +32,16 @@ const Register = () => {
           createUser(email,password)
           .then(result=>{
             console.log(result.user)
+            if(result.user){
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Registration Successful",
+                showConfirmButton: false,
+                timer: 2000
+              });
+              navigate(from)
+            }
           })
           .catch(error=>{
             console.log(error)
