@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
         {
             path: '/allTourists',
             element: <AllTouristSpot></AllTouristSpot>,
-            loader: ()=>fetch('http://localhost:5000/traveldata')
+            loader: ()=>fetch('https://assignment-10-server-woad-theta.vercel.app/traveldata')
         },
         {
             path: '/addTourists',
@@ -42,13 +42,9 @@ export const router = createBrowserRouter([
         {
             path: '/travelDetails/:id',
             element: <TravelDetails></TravelDetails>,
-            loader: ({params})=>fetch(`http://localhost:5000/traveldata/${params.id}`)
+            loader: ({params})=>fetch(`https://assignment-10-server-woad-theta.vercel.app/traveldata/${params.id}`)
         },
-        {
-            path: '/',
-            element: <TouristsSpot></TouristsSpot>,
-            loader: ()=>fetch('http://localhost:5000/traveldata')
-        }
+       
       ]
     },
   ]);

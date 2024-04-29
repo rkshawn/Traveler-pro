@@ -5,7 +5,7 @@ const TouristsSpot = () => {
   const [spotsData, setSpotsData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/traveldata/")
+    fetch("https://assignment-10-server-woad-theta.vercel.app/traveldata")
       .then((res) => res.json())
       .then((data) => {
         setSpotsData(data);
