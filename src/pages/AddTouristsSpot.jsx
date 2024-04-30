@@ -24,7 +24,7 @@ const AddTouristsSpot = () => {
     console.log(userTravelData);
 
     //send travel data to the server
-    fetch('http://localhost:5000/traveldata',{
+    fetch('https://assignment-10-server-woad-theta.vercel.app/traveldata',{
         method: 'POST',
         headers:{
             'content-type' : 'application/json'

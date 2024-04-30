@@ -9,15 +9,18 @@ const githubProvider = new GithubAuthProvider();
 
 // eslint-disable-next-line react/prop-types
 const TravelProvider = ({children}) => {
+    const [loading,setLoading] =useState(true);
     const [user, setUser] = useState(null)
 
     // Create User
     const createUser = (email,password)=>{
+        setLoading(true)
         return createUserWithEmailAndPassword(auth,email,password)
     }
 
     //sign in user
     const signInUser = (email,password)=>{
+        setLoading(true)
         return signInWithEmailAndPassword(auth,email,password);
      }
   // sign out user
@@ -27,7 +30,7 @@ const TravelProvider = ({children}) => {
 
  // sign in with google
  const logInWithGoogle = ()=>{
-    // setLoading(true);
+    setLoading(true);
    return  signInWithPopup(auth,googleProvider);
   
  }
@@ -35,7 +38,7 @@ const TravelProvider = ({children}) => {
  //sign in with github
 
  const logInWithGithub = ()=>{
-    // setLoading(true);
+    setLoading(true);
      return signInWithPopup(auth,githubProvider);
  }
 
@@ -44,6 +47,7 @@ const TravelProvider = ({children}) => {
  useEffect(()=>{
     const unSubscribe = onAuthStateChanged(auth, currentUser =>{
         setUser(currentUser)
+        setLoading(false)
     })
     return ()=> {
         unSubscribe();
@@ -57,7 +61,8 @@ const TravelProvider = ({children}) => {
       LogOutUser,
       logInWithGoogle,
       logInWithGithub,
-      user
+      user,
+      loading
       
     }
     return (

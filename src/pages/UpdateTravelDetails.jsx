@@ -29,7 +29,7 @@ const UpdateTravelDetails = () => {
       
     
         //send travel data to the server
-        fetch(`http://localhost:5000/traveldata/${_id}`,{
+        fetch(`https://assignment-10-server-woad-theta.vercel.app/traveldata/${_id}`,{
             method: 'PUT',
             headers:{
                 'content-type' : 'application/json'
