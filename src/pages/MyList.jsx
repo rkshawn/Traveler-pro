@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { TravelContext } from "../Provider/TravelProvider";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MyList = () => {
     const [loadedData,setLoadedData] = useState([]);
@@ -72,7 +73,9 @@ const authorizedData = loadedData.filter(data =>data.email === user.email)
                 <td> {data.countryName}  </td>
                 <td>{data.location}</td>
                <td>
-               <button className="btn bg-green-500">Update</button>
+              <Link to={`/updateDetails/${data._id}`}>
+                   <button className="btn bg-green-500">Update</button>
+              </Link>
                </td>
                <td>
                <button onClick={()=>handleDelete(data._id)} className="btn bg-red-600 text-white">X</button>

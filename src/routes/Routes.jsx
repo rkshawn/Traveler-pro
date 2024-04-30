@@ -9,6 +9,7 @@ import Register from "../pages/Register";
 import TravelDetails from "../pages/TravelDetails";
 import ErrorPage from "../pages/ErrorPage";
 import PrivateRoute from "./PrivateRoute";
+import UpdateTravelDetails from "../pages/UpdateTravelDetails";
 
 export const router = createBrowserRouter([
     {
@@ -46,7 +47,11 @@ export const router = createBrowserRouter([
             element: <PrivateRoute><TravelDetails></TravelDetails></PrivateRoute>,
             loader: ({params})=>fetch(`https://assignment-10-server-woad-theta.vercel.app/traveldata/${params.id}`)
         },
-       
+       {
+        path:'/updateDetails/:id',
+        element:<UpdateTravelDetails></UpdateTravelDetails>,
+        loader:  ({params})=>fetch(`https://assignment-10-server-woad-theta.vercel.app/traveldata/${params.id}`)
+       }
       ]
     },
   ]);
